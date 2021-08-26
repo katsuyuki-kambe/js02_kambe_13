@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ゲーム</title>
+    <link rel="stylesheet" href="css/app.css">
+
+    <style>
+    #key2 {
+      border: 3px solid #000;
+      margin: 20px 0;
+      height: 20px;
+    }
+   
+    </style>
+
+</head>
+<body>
+  <p>
+    <input type="button" value="カウントスタート" id="startcount" onclick="startShowing();">
+    <input type="button" value="カウントストップ" id="endcount" onclick="stopShowing();">
+  </p>
+  <p id="PassageArea">何秒走れるか耐久レース！</p>
+  
+
+<script type="text/javascript" src="main.js"></script>
+
+<input type="button" id="sample-load" value="前回タイムの呼出" /><br>
+<textarea id="sample-text"></textarea><br>
+<input type="button" id="sample-save" value="タイムを保存" /><br>
+<input type="button" id="sample-delete" value="前回タイムの削除" />
+
+<script>
+//呼び出しボタンの処理
+document.getElementById("sample-load").onclick = function(){
+    if(localStorage.getItem('memo') === null){
+        alert('タイムが保存されていません。');
+        return false;
+    }
+    var text = localStorage.getItem('memo');
+    document.getElementById("sample-text").value = text;
+    alert('前回タイムを呼び出しました。');
+};
+
+//保存ボタンの処理
+document.getElementById("sample-save").onclick = function(){
+    var text = document.getElementById("sample-text").value;
+    if(!text){
+        alert('タイムが入力されていません。');
+        return false;
+    }
+    localStorage.setItem('memo', text);
+    alert('タイムを保存しました。');
+};
+
+//削除ボタンの処理
+document.getElementById("sample-delete").onclick = function(){
+    if(localStorage.getItem('memo') === null){
+        alert('タイムが保存されていません。');
+        return false;
+    }
+    localStorage.removeItem('memo');
+    alert('タイムを削除しました。');
+};
+</script>
+
+</body>
+
+</html>
